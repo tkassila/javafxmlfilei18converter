@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: com.metait.javafxmlfileI18convert.JavaFxmlFileConver18Applic
+ ation
+

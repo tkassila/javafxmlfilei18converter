@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style type="text/css">
+  body {
+   margin: 30px;
+  }
+  /*
+   * this is the same as writing
+   * body { margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px;}
+   * I'm adding px here for clarity sake but the unit is not really needed if you have 0
+   * look into em, pt and % for other unit types
+   * the rules are always clockwise: top, right, bottom, left
+  */
+</style>
+
+    <meta charset="UTF-8"/>
+    <title>Help</title>
+</head>
+<body id="idbody">
+<h1 id="main_header">JavaFx Scene Builder files into i18 files and edit language
+    properties files</h1>
+<h3>Purpose of this application</h3>
+<p>When the application is started, you can generate a i18 fxml file from your application
+    unmodified .fxml file. This application will generate also correspond language property file too. And save all new files into another
+    file names. Then at second phase it is possible to edit another language files also.</p>
+
+<h3>Sample content of an .fxml file</h3>
+<h4>Normal .fxml file content example rows:</h4>
+<p>&lt;Button mnemonicParsing="false" text="Open config" /&gt;<br/>
+    &lt;Button mnemonicParsing="false" text="Edit config" /&gt;
+</p>
+<h4>The same content after Compress button pressed:</h4>
+<p>&lt;Button mnemonicParsing="false" text="%Button5_text" /&gt;<br/>
+    &lt;Button mnemonicParsing="false" text="%Button6_text" /&gt;
+</p>
+<p>And same content in language properties text area:</p>
+<p>Button5_text=Open config<br/>
+Button6_text=Edit config</p>
+
+<h3>When convert and language properties file edit has been done, use these file on following way</h3>
+<p>Here is a multi language example i18 code when this application is starting:</p>
+<code>
+    // FXMLLoader fxmlLoader = new FXMLLoader(JavaFxmlFileConver18Application.class.getResource("javafxmlfileconverti18-view.fxml"));<br/>
+    // This locale can be as selected locale from gui by the user:<br/>
+    Locale locale = new Locale("en", "UK");<br/>
+    ResourceBundle bundle = ResourceBundle.getBundle("com/metait/javafxmlfileI18convert/lang", locale);<br/>
+    // System.out.println("path=" +JavaFxmlFileConver18Application.class.getPackageName().toString());<br/>
+    String strPath = JavaFxmlFileConver18Application.class.getPackageName().replaceAll("\\.","/");<br/>
+    // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("javafxmlfileconverti18-view.fxml"));<br/>
+    <br/>
+    // Use here generated .fxml file and indirect also language .propties file:<br/>
+    <b>FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("javafxmlfileconverti18-viewtemplate.fxml"), bundle);</b><br/>
+    // remove xml block from .fxml file: fx:controller="com.metait.javafxplayer.PlayerController"<br/>
+    fxmlLoader.setController(controller);<br/>
+    m_primaryStage = stage;<br/>
+    controller.setPrimaryStage(m_primaryStage);<br/>
+    // Parent loadedroot = fxmlLoader.load();<br/>
+    Scene scene = new Scene(fxmlLoader.load(), 1000, 800);<br/>
+    //  JMetro jMetro = new JMetro(scene, Style.LIGHT);<br/>
+    stage.setTitle("JavaFxmlFileI18Convert");<br/>
+    stage.setScene(scene);<br/>
+    stage.show();<br/>
+</code>
+<h2>Usage</h2>
+<h3>Case 1</h3>
+<p>As above first chapter, the convert is done at once on following way:</p>
+
+<b>
+<ol>
+    <li>Open a unmodified normal .fxml file</li>
+    <li>Press Convert button</li>
+    <li>Save generated modified content of .fml file into another file name</li>
+    <p>This done for i18 multi language JavaFx application</p>
+    <li>Save generated content of language properties file into another file name,
+    like: app_name_en.properties or app_name_fi.properties</li>
+    <p>The stored file name is depend on used language.</p>
+    <li>After saving both above files, press Edit two language files button</li>
+    <li>Open on 4 step saved language properties file</li>
+    <li>Open a new and empty language properties file after above language file names</li>
+    <li>Copy a content from the first file text area into second empty text area</li>
+    <li>Translate all sentences on the right side every row after = strike charachter</li>
+    <li>Save new language content into that new language file</li>
+</ol>
+</b>
+
+<h3>Case 2</h3>
+<p>At the first case, the convert is done on different steps on following way.
+That means as in the case 1, but you modify i18 frml app scene builder file,
+and then convert this later versions. And then add later generated part into
+a new frml and new language file versions.</p>
+
+<b>
+<ol>
+    <li>Open a all ready i18 modified .fxml file, which have new normal text
+    by example text="text" values enstead of %Button_text variable value.</li>
+    <li>Press Convert button</li>
+    <li>Save generated modified content of .fxml file into the same file name</li>
+    <li>Open an existing language file, which is corresponding current fxml file!</li>
+    <p>When this is done, the new generated variables will be added the content of
+    just open file</p>
+    <li>Save generated content of language properties file into the same file name,
+        like: app_name_en.properties or app_name_fi.properties</li>
+    <p>The stored file name is depend on used language.</p>
+    <li>After saving both above files, press Edit two language files button etc, like
+    in the case 1</li>
+</ol>
+</b>
+
+</body>
+</html>

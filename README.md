@@ -5,15 +5,15 @@ Case 1
 ======
 
 1) Open and convert normal .fxml file into i18 % variable file. Save it
-2) After Convert button press, save also lang with name like 'app_name_en.properties'.
+2) After Convert button press, save also a language content with name like 'app_name_en.properties'.
 3) Change your app to load this modified .fxml file with current java locale. To see an example code,
-   open help dialog of the application and add corresponding code to yout app.
+   open help dialog of the application and add corresponding code to your application.
 
 Case 2
 ======
 
-1) Open and convert this kind of modified .fxml file into i18 % variable file. Save it over earlier template .fxml file.
-2) After Convert button press, open erarlier lang with name like 'app_name_en.properties' and add new % variables into it.
+1) Open and convert this kind of new version (% variable) .fxml file into i18 % variable file, modified by Scene Builder. Save it over earlier template .fxml file.
+2) After Convert button press, open erarlier language .properties file with name like 'app_name_en.properties' and add new % variables into it.
 3) Start your app with new file contents.
 
 Case 3
